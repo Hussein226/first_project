@@ -1,23 +1,66 @@
 <template>
   <v-app>
-    <v-main>
-      <HelloWorld/>
-    </v-main>
+      <v-navigation-drawer
+        permanent
+        expand-on-hover
+        app
+        absolute
+      >
+      <v-list>
+        <v-list-item class="px-2">
+          <v-avatar>
+          <v-img
+          src="https://cdn141.picsart.com/334706614028211.png"
+          >
+          </v-img>
+        </v-avatar>
+        </v-list-item>
+        <v-list-item 
+          link
+          :to="{path: '/'}"
+        >
+        <v-list-item-icon>
+          <v-icon>mdi-home</v-icon>
+        </v-list-item-icon>
+          <v-list-item-title>Home</v-list-item-title>
+        </v-list-item>
+        <v-list-item 
+          link
+          :to="{path: 'covid-tracker'}"
+        >
+          <v-list-item-icon>
+            <v-icon>mdi-virus</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Covid Tracker</v-list-item-title>
+        </v-list-item>
+      </v-list>
+      </v-navigation-drawer>
+      <v-main>
+        <router-view/>
+      </v-main>
+      
   </v-app>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld';
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
-export default {
-  name: 'App',
+#nav {
+  padding: 30px;
 
-  components: {
-    HelloWorld,
-  },
+  a {
+    font-weight: bold;
+    color: #2c3e50;
 
-  data: () => ({
-    //
-  }),
-};
-</script>
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+</style>

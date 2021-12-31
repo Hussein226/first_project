@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-row>
       <v-col>
         <v-select
@@ -9,7 +9,7 @@
           item-text="name"
           item-value="code"
           @change="getCompanyByCountryCode(countrySelect)"
-          max-width="350"
+          class="mx-auto"
         />
       </v-col>
     </v-row>
@@ -35,7 +35,7 @@
 <script>
 import ApiService from '../services/ApiService'
 export default {
-  name: 'HelloWorld',
+  name: 'CovidTracker',
 
   mounted () {
     this.someVariable = this.getCompanyByCountryCode();
