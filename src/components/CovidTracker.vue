@@ -1,7 +1,8 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col>
+      <v-col/>
+      <v-col cols = "4">
         <v-select
           v-model="countrySelect"
           label="Select a Country"
@@ -12,6 +13,7 @@
           class="mx-auto"
         />
       </v-col>
+      <v-col/>
     </v-row>
     <v-row>
       <v-col>
@@ -47,10 +49,10 @@ export default {
     allCountries: [],
     selectedCountryInfo: {
       country: '',
-      confirmed: 0,
-      deaths: 0,
-      recovered: 0,
-      critical: 0
+      confirmed: '',
+      deaths: '',
+      recovered: '',
+      critical: ''
     }
   }),
   methods: {
@@ -58,10 +60,13 @@ export default {
     const resp = await ApiService.firstApiCall(country)
     this.someVariable = resp.data;
     this.selectedCountryInfo.country = this.someVariable[0].country;
-    this.selectedCountryInfo.confirmed = this.someVariable[0].confirmed;
-    this.selectedCountryInfo.deaths = this.someVariable[0].deaths;
-    this.selectedCountryInfo.recovered = this.someVariable[0].recovered;
-    this.selectedCountryInfo.critical = this.someVariable[0].critical;
+    this.selectedCountryInfo.confirmed = this.numberWithCommas(this.someVariable[0].confirmed);
+    this.selectedCountryInfo.deaths = this.numberWithCommas(this.someVariable[0].deaths);
+    this.selectedCountryInfo.recovered = this.numberWithCommas(this.someVariable[0].recovered);
+    this.selectedCountryInfo.critical = this.numberWithCommas(this.someVariable[0].critical);
+    },
+    numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
   }
 }

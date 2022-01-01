@@ -4,10 +4,10 @@
         permanent
         expand-on-hover
         app
-        absolute
+        mini-variant.sync
       >
       <v-list>
-        <v-list-item class="px-2">
+        <v-list-item class="px-1">
           <v-avatar>
           <v-img
           src="https://cdn141.picsart.com/334706614028211.png"
@@ -35,9 +35,13 @@
         </v-list-item>
       </v-list>
       </v-navigation-drawer>
-      <v-main>
+
+      <v-container>
         <router-view/>
-      </v-main>
+      </v-container>
+      <!-- <v-main>
+        <router-view/>
+      </v-main> -->
       
   </v-app>
 </template>
