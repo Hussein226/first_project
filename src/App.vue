@@ -33,6 +33,15 @@
           </v-list-item-icon>
           <v-list-item-title>Covid Tracker</v-list-item-title>
         </v-list-item>
+        <v-list-item 
+          link
+          :to="{path: 'ChatRoom'}"
+        >
+          <v-list-item-icon>
+            <v-icon>mdi-chat</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Chat Room</v-list-item-title>
+        </v-list-item>
       </v-list>
       </v-navigation-drawer>
 
