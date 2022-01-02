@@ -1,0 +1,4 @@
+[submodule "src/cometchat-pro-vue-ui-kit"]
+	path = src/cometchat-pro-vue-ui-kit
+	url = https://github.com/cometchat-pro/cometchat-pro-vue-ui-kit.git
+	branch = v2
