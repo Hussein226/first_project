@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../components/Home.vue'
 import CovidTracker from '../components/CovidTracker.vue'
+import ChatRoom from '../components/ChatRoom.vue'
 
 Vue.use(VueRouter)
 
@@ -17,12 +18,9 @@ const routes = [
     component: CovidTracker
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/chatroom',
+    name: 'ChatRoom',
+    component: ChatRoom
   }
 ]
 
