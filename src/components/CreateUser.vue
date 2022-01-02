@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div v-if="!loggedIn">
-      <v-form>
+    <v-form>
         <v-container>
           <v-row>
             <v-col>
@@ -14,13 +13,22 @@
               <v-row>
                 <v-col>
                   <v-card-title>
-                    Login
+                    Create an Account
                   </v-card-title>
                   <v-card-text>
                     <v-text-field
-                      v-model="userIdLogin"
-                      label="User Id"                    
+                      v-model="userId"
+                      label="Username"                    
                     />
+                  </v-card-text>
+                  <v-card-text>
+                    <v-text-field
+                      v-model="userName"
+                      label="Display Name"                    
+                    />
+                  </v-card-text>
+                  <v-card-text v-if="accountCreated">
+                    <p> Account Created! Return to Login to log into your account </p>
                   </v-card-text>
                 </v-col>
               </v-row>
@@ -30,8 +38,8 @@
                     <v-btn 
                       class="button"
                       rounded
-                      @click="logUser(userIdLogin)">
-                      Login
+                      @click="createUser(userId,userName)">
+                      Create Account
                     </v-btn>
                   </v-card-actions>
                 </v-col>
@@ -41,8 +49,8 @@
                       class="button"
                       rounded
                       link
-                      :to="{path: '/createUser'}">
-                      Create Account
+                      :to="{path: '/chatroom'}">
+                      Back to Login
                     </v-btn>
                   </v-card-actions>
                 </v-col>
@@ -54,51 +62,31 @@
           </v-row>  
         </v-container>
       </v-form>
-    </div>
-    <div 
-      class= "chatContainer"
-      v-else>
-      <CometChatUI/>
-    </div>
   </div>
 </template>
 
 <script>
-import { CometChatUI } from "../../cometchat-pro-vue-ui-kit/CometChatWorkspace/src";
-import {initChatRoom, login} from '../services/ChatRoomService'
-export default {
-  name: 'ChatRoom',
-  components: {
-    CometChatUI
-  },
-  data() {
-    return {
-      userIdLogin: '',
-      userIdCreate:'',
-      userName: '',
-      loggedIn: false
-    }
-  },
-  beforeMount () {
-    initChatRoom();
-  },
-  methods: {
-    async logUser(userId) {
-      let response = await login(userId)
-      console.log(response)
-      this.loggedIn=response;
-    }
-  },
-}
+import {createUser} from '../services/ChatRoomService'
+  export default {
+    data() {
+      return {
+        userId: '',
+        userName: '',
+        accountCreated: false
+      }
+    },
+    methods: {
+      async createUser(userId, userName) {
+        let response = await createUser(userId,userName)
+
+        if(response){
+          this.accountCreated = true;
+        }
+      }
+    },
+  }
 </script>
 
 <style lang="scss" scoped>
 
-.chatContainer {
-  height: 750px
-}
-
-.button{
-  width: 175px;
-}
 </style>

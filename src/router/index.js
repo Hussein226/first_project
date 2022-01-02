@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../components/Home.vue'
 import CovidTracker from '../components/CovidTracker.vue'
 import ChatRoom from '../components/ChatRoom.vue'
+import CreateUser from '../components/CreateUser.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/chatroom',
     name: 'ChatRoom',
     component: ChatRoom
+  },
+  {
+    path:'/createUser',
+    name:'CreateUser',
+    component: CreateUser
   }
 ]
 

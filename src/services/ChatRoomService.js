@@ -23,28 +23,29 @@ export function initChatRoom () {
   );
 }
 
-export function createUser(userId, name){
+export async function createUser(userId, name){
   var user = new CometChat.User(userId);
   user.setName(name);
-  CometChat.createUser(user, authKey).then(
+  let response;
+
+  try{
+    response = await CometChat.createUser(user, authKey);
     user => {
-        console.log("user created", user);
-    },error => {
-        console.log("error", error);
+      console.log("User Created", user );
     }
-)
+  }catch(error){
+    console.log("error", error);
+  }
+  return response
 }
 
 export async function login(userId){
-/*  CometChat.login(userId, authKey).then(
-    user => {
-      console.log("Login Successful:", { user });
-      return true    
-    },
-    error => {
-      console.log("Login failed with exception:", { error });    
-    }
-  ); */
-  let response = await CometChat.login(userId,authKey)
+  let response;
+  try{
+    response = await CometChat.login(userId,authKey)
+    console.log("Loggged In: ", response)
+  }catch(error){
+    console.log(error)
+  }
   return response
 }
