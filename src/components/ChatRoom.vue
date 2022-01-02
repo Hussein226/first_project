@@ -24,7 +24,10 @@
         Login
       </v-btn>
     </div>
-    <div v-else>
+    <div 
+      class= "chatContainer"
+      v-else
+      >
       <CometChatUI/>
     </div>
   </div>
@@ -64,4 +67,7 @@ export default {
 
 <style lang="scss" scoped>
 
+.chatContainer {
+  height: 750px
+}
 </style>
