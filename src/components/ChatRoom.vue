@@ -50,9 +50,10 @@ export default {
     initChatRoom();
   },
   methods: {
-    logUser(userId) {
-      login(userId)
-      this.loggedIn=true;
+    async logUser(userId) {
+      let response = await login(userId)
+      console.log(response)
+      this.loggedIn=response;
     },
     createUserId(userId, name){
       createUser(userId, name);

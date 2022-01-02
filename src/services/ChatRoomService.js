@@ -35,13 +35,16 @@ export function createUser(userId, name){
 )
 }
 
-export function login(userId){
-  CometChat.login(userId, authKey).then(
+export async function login(userId){
+/*  CometChat.login(userId, authKey).then(
     user => {
-      console.log("Login Successful:", { user });    
+      console.log("Login Successful:", { user });
+      return true    
     },
     error => {
       console.log("Login failed with exception:", { error });    
     }
-  );
+  ); */
+  let response = await CometChat.login(userId,authKey)
+  return response
 }
