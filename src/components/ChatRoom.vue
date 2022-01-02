@@ -3,14 +3,20 @@
     <div v-if="!loggedIn">
       <v-text-field
         v-model="userIdCreate"
+        label="User Id"
+      />
+      <v-text-field
+        v-model="userName"
+        label="Name"
       />
       <v-btn
-        @click="createUserId(userIdCreate)"
+        @click="createUserId(userIdCreate, userName)"
       >
         Create User
       </v-btn>
       <v-text-field
         v-model="userIdLogin"
+        label="User Id"
       />
       <v-btn
         @click="logUser(userIdLogin)"
@@ -36,6 +42,7 @@ export default {
     return {
       userIdLogin: '',
       userIdCreate:'',
+      userName: '',
       loggedIn: false
     }
   },
@@ -47,8 +54,8 @@ export default {
       login(userId)
       this.loggedIn=true;
     },
-    createUserId(userId){
-      createUser(userId);
+    createUserId(userId, name){
+      createUser(userId, name);
     }
   },
 }

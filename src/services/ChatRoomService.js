@@ -3,7 +3,6 @@ import { CometChat } from "@cometchat-pro/chat";
 const appID = "200896763832f5d4";
 const region = "US";
 const authKey = "36b4c86381005c124021ec67b1dc7a52d20439a5";
-var name = "Kevin";
 
 
 const appSetting = new CometChat.AppSettingsBuilder()
@@ -24,7 +23,7 @@ export function initChatRoom () {
   );
 }
 
-export function createUser(userId){
+export function createUser(userId, name){
   var user = new CometChat.User(userId);
   user.setName(name);
   CometChat.createUser(user, authKey).then(
