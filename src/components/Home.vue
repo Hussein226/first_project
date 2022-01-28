@@ -1,16 +1,22 @@
 <template>
-  <div>
+<div class="form">
+  <v-flex>
     <v-form
       @submit="submitForm"
+      validate
     >
       <v-text-field
         v-model='firstName'
         label='First Name'
+        :rules="firstNameRules"
+        required
       >
       </v-text-field>
       <v-text-field
         v-model='lastName'  
         label='Last Name'
+        :rules="lastNameRules"
+        required
       >
       </v-text-field>
       <v-text-field
@@ -29,6 +35,14 @@
         Submit Form
       </v-btn>
     </v-form>
+  </v-flex>
+
+   <v-snackbar 
+      v-model="displaySnackBar"
+      text
+    >
+     Success
+  </v-snackbar>
   </div>
 </template>
 
@@ -42,11 +56,23 @@ export default {
       firstName: '',
       lastName: '',
       age: '',
-      gender: ''
+      gender: '',
+      firstNameRules: [
+        v => !!v || 'Enter a first name'
+      ],
+      lastNameRules: [
+        v => !!v || 'Enter a last name'
+      ],
+      ageRule: [
+        v => !!v || 'Enter your age',
+
+      ],
+      displaySnackBar: false
     }
   },
   methods: {
     async submitForm() {
+      this.$ref.form.validate()
      let requestBody = {
         firstName: this.firstName,
         lastName: this.lastName,
@@ -57,7 +83,7 @@ export default {
 
       try{
         let response = await setUserData(requestBody)
-
+        this.displaySnackBar = true;
         return response
       }catch(error){
         console.log(error)
@@ -67,3 +93,17 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .form {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+  }
+  @media (min-width: 600px) {
+    .form {
+      width: 50%;
+    }
+  }
+</style>
